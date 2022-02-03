@@ -1,0 +1,7 @@
+rootProject.name = 'aurora'
+
+include 'cloud-eureka'
+include 'cloud-eureka:eureka-server'
+include 'cloud-eureka:cloud-config-server'
+include 'cloud-eureka:eureka-client'
+include 'cloud-eureka:gateway-server'
