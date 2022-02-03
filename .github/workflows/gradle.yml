@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: download gradle version
+      - name: Starting gradle daemon
         run: gradle wrapper --gradle-version 5.6.4 --distribution-type all
       - name: grant access to execute file
         run: chmod +x gradlew
