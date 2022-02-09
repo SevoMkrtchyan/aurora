@@ -5,3 +5,6 @@ include 'cloud-eureka:eureka-server'
 include 'cloud-eureka:cloud-config-server'
 include 'cloud-eureka:eureka-client'
 include 'cloud-eureka:gateway-server'
+
+include 'feign-client'
+include 'feign-client:client-example'

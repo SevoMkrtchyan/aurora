@@ -3,13 +3,10 @@ server:
   port: 8011
 
 spring:
-  # Set the name of application
   application:
     name: cloud-config-server
-  # At this time, I'm going to store configurations in a classpath
   profiles:
     active: native
-  # Let's look for configurations in a classpath
   cloud:
     config:
       server:
@@ -17,8 +14,9 @@ spring:
           search-locations:
             - classpath:/
 
-        # Configuring Eureka client, at this moment it's necessary to show where Eureka is located
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8000/eureka
+      defaultZone: ${EUREKA_URI:http://localhost:8000/eureka}
+      instance:
+        preferIpAddress: true

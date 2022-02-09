@@ -1,0 +1,62 @@
+version: '3'
+services:
+  cloud-eureka-server:
+    container_name: cloud-eureka-server
+    build:
+      context: ./cloud-eureka/eureka-server/
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8000:8000"
+
+  cloud-config-server:
+    depends_on:
+      - cloud-eureka-server
+    container_name: cloud-config-server
+    build:
+      context: ./cloud-eureka/cloud-config-server/
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8011:8011"
+    environment:
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
+
+  gateway-server:
+    depends_on:
+      - cloud-config-server
+    container_name: gateway-server
+    build:
+      context: ./cloud-eureka/gateway-server
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8090:8090"
+    environment:
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
+
+  eureka-client:
+    depends_on:
+      - cloud-config-server
+    container_name: eureka-client
+    build:
+      context: ./cloud-eureka/eureka-client
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8002:8002"
+    environment:
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
+
+  feign-client:
+    depends_on:
+      - cloud-config-server
+    container_name: feign-client-example
+    build:
+      context: ./feign-client/client-example
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8094:8094"
+    environment:
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka

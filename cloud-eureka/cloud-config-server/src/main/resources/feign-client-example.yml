@@ -1,0 +1,6 @@
+server:
+  port: 8094
+
+app:
+  service:
+    name: Feign Client Test example 1
