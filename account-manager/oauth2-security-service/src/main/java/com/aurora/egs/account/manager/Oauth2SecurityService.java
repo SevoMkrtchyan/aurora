@@ -11,12 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableEurekaClient
 public class Oauth2SecurityService {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Oauth2SecurityService.class);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(Oauth2SecurityService.class);
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 }
