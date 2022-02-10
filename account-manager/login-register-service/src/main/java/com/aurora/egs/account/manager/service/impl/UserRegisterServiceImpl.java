@@ -9,7 +9,7 @@ import com.aurora.egs.account.manager.request.UserRequestForLogin;
 import com.aurora.egs.account.manager.request.UserRequestForRegister;
 import com.aurora.egs.account.manager.responce.UserResponse;
 import com.aurora.egs.account.manager.service.UserService;
-import java.util.List;
+import com.aurora.egs.account.manager.util.JwtTokenUtil;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +25,7 @@ public class UserRegisterServiceImpl implements UserService {
   private final UserRepository userRepository;
   private final UserMapper mapper;
   private final PasswordEncoder passwordEncoder;
+  private final JwtTokenUtil jwtTokenUtil;
 
   @Override
   public void registerUser(UserRequestForRegister userRequest) {
@@ -58,11 +59,8 @@ public class UserRegisterServiceImpl implements UserService {
     }
     userResponse.setName(user.getName());
     userResponse.setSurname(user.getSurname());
+    String token = jwtTokenUtil.generateToken(user.getEmail());
+    userResponse.setToken(token);
     return userResponse;
-  }
-
-  @Override
-  public List<User> findAllUsers() {
-    return userRepository.findAll();
   }
 }

@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class BasicGreetingController {
 
   @Value("${app.service.name}")
-    private String serviceName;
+  private String serviceName;
 
   @Value("${app.service.icon}")
-    private int iconCode;
+  private int iconCode;
 
-  @Autowired
-    private UserClient userClient;
+  @Autowired private UserClient userClient;
 
   /**
-  * Returns a greeting message with an icon.
-  *
-  * @return greeting message
-  */
+   * Returns a greeting message with an icon.
+   *
+   * @return greeting message
+   */
   @GetMapping
-    public String getGreeting() {
-    final String greeting = new StringBuilder(new String(Character.toChars(iconCode)))
-                .append(" ")
-                .append("Hello from ")
-                .append(serviceName)
-                .toString();
+  public String getGreeting() {
+    final String greeting =
+        new StringBuilder(new String(Character.toChars(iconCode)))
+            .append(" ")
+            .append("Hello from ")
+            .append(serviceName)
+            .toString();
     return greeting + userClient.getMessage();
   }
 }

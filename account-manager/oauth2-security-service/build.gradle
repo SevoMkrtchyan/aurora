@@ -12,7 +12,6 @@ dependencies {
     implementation('mysql:mysql-connector-java')
     implementation('org.projectlombok:lombok')
     implementation('javax.validation:validation-api:2.0.1.Final')
-//    implementation('email-normalisation:email-normalisation:1.0.3')
 }
 
 bootJar {
