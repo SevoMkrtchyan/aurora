@@ -11,6 +11,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/account-manager" />
+            <option value="$PROJECT_DIR$/account-manager/account-manager-service" />
+            <option value="$PROJECT_DIR$/account-manager/login-register-service" />
             <option value="$PROJECT_DIR$/cloud-eureka" />
             <option value="$PROJECT_DIR$/cloud-eureka/cloud-config-server" />
             <option value="$PROJECT_DIR$/cloud-eureka/eureka-client" />

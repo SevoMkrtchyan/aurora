@@ -1,10 +1,6 @@
-# Application-wide configuration
-server:
-  port: 0
-
 spring:
   application:
-    name: feign-client-example
+    name: cloud-eureka-client
 
   cloud:
     config:
