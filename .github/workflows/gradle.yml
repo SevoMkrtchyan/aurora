@@ -2,8 +2,9 @@ name: Aurora project build
 
 on:
   push:
+  pull_request:
     branches: [ main ]
-
+  
 jobs:
   build:
 
