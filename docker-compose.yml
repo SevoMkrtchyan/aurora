@@ -35,28 +35,28 @@ services:
     environment:
       EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
 
-  eureka-client:
+  login-register-service:
     depends_on:
       - cloud-config-server
-    container_name: eureka-client
+    container_name: login-register-service
     build:
-      context: ./cloud-eureka/eureka-client
+      context: ./account-manager/login-register-service
       dockerfile: Dockerfile
     restart: on-failure
     ports:
-      - "8002:8002"
+      - "8082:8082"
     environment:
       EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
 
-  feign-client:
+  oauth2-security-service:
     depends_on:
       - cloud-config-server
-    container_name: feign-client-example
+    container_name: oauth2-security-service
     build:
-      context: ./feign-client/client-example
+      context: ./account-manager/oauth2-security-service
       dockerfile: Dockerfile
     restart: on-failure
     ports:
-      - "8094:8094"
+      - "8081:8081"
     environment:
       EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
