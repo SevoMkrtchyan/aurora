@@ -60,3 +60,44 @@ services:
       - "8081:8081"
     environment:
       EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
+
+
+  egs-user-core:
+    depends_on:
+      - cloud-config-server
+    container_name: egs-user-core
+    build:
+      context: ./egs-user-services/egs-user-core
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8085:8085"
+    environment:
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
+
+  egs-user-feign:
+    depends_on:
+      - cloud-config-server
+    container_name: egs-user-feign
+    build:
+      context: ./egs-user-services/egs-user-feign
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8086:8086"
+    environment:
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
+
+  egs-user-repository:
+    depends_on:
+      - cloud-config-server
+    container_name: egs-user-repository
+    build:
+      context: ./egs-user-services/egs-user-repository
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8087:8087"
+    environment:
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://cloud-eureka-server:8000/eureka
+

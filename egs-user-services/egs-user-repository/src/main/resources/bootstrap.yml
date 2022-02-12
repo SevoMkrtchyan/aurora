@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: egs-user-repository
+
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: cloud-config-server
+      fail-fast: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/

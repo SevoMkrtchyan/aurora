@@ -9,3 +9,9 @@ include 'account-manager'
 include 'account-manager:account-manager-service'
 include 'account-manager:login-register-service'
 include 'account-manager:oauth2-security-service'
+
+
+include 'egs-user-services'
+include 'egs-user-services:egs-user-core'
+include 'egs-user-services:egs-user-repository'
+include 'egs-user-services:egs-user-feign'
