@@ -6,13 +6,23 @@ spring:
   application:
     name: cloud-config-server
   profiles:
-    active: native
+    active: git
   cloud:
     config:
       server:
-        native:
-          search-locations:
-            - classpath:/
+        git:
+          uri: https://github.com/SevoMkrtchyan/aurora-cloud-config
+          force-pull: true
+
+#        native:
+#          search-locations:
+#            - classpath:/
+
+management:
+  endpoints:
+    web:
+      base-path: /admin
+
 
 eureka:
   client:
