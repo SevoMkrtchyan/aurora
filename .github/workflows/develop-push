@@ -1,0 +1,24 @@
+name: Aurora project build on push and pull request to develop
+
+on:
+  push:
+  pull_request:
+    branches: [ develop ]
+  
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Starting gradle daemon
+        run: gradle wrapper --gradle-version 5.6.4 --distribution-type all
+      - name: grant access to execute file
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
